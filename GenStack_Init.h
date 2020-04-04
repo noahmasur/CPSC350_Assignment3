@@ -21,6 +21,7 @@ class GenStack{
     bool isEmpty();
     bool isFull();
 
+  private:
     T top;
     int m_size;
 

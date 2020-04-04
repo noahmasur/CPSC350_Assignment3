@@ -3,6 +3,8 @@
 int main(int argc, char const *argv[]) {
   string fCont, fName;
   char choice = '1';
+  bool error;
+
   //Checks for command line parameter
   if( argc < 2){
     cout << "Invalid command line parameters" << endl;
@@ -20,15 +22,19 @@ int main(int argc, char const *argv[]) {
       //If read file was unable to open
       cout << "Could not open " << fName<< endl;
     } else{
-      SyntaxChecker::checkSyntax(fCont);
+      error = SyntaxChecker::checkSyntax(fCont);
     }
 
-    cout << "Would you like to analyze another file: \n\t1) Yes \n\t2) No\nChoice: ";
-    cin >> choice;
+    if(error){
+      choice = '2';
+    } else{
+      cout << "Would you like to analyze another file: \n\t1) Yes \n\t2) No\nChoice: ";
+      cin >> choice;
 
-    if(choice == '1'){
-      cout << "Enter the name of the file you want to input from: " << endl;
-      cin >> fName;
+      if(choice == '1'){
+        cout << "Enter the name of the file you want to input from: " << endl;
+        cin >> fName;
+      }
     }
   }
   return 0;
